@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alma</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFC0CB;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .scroll-container {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 40px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 9rem;
+        }
+
+        p {
+            font-size: 2rem; /* Duplicado el tamaño del texto */
+            width: 73%;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #FF69B4;
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            font-size: 3rem;
+            cursor: pointer;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .emoji {
+            position: fixed;
+            font-size: 2.5rem;
+            animation: fall linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-100px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+
+        #pantalla2 {
+            display: none;
+            overflow: hidden;
+        }
+
+        #pantalla2 .scroll-container {
+            height: 100vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="pantalla1">
+        <h1>Para Alma</h1>
+        <button class="button" onclick="mostrarPantalla(2)">Quiero que sepas</button>
+    </div>
+
+    <div class="container" id="pantalla2">
+        <div class="scroll-container">
+            <h1>Almis</h1>
+            <p>
+                Desde el primer instante en que nuestras miradas se cruzaron,  
+                supe que había encontrado algo más que un momento fugaz.  
+                En ti descubrí un brillo único,  
+                una chispa que ilumina incluso los días más oscuros.
+            </p>
+
+            <p>
+                Admiro la fuerza con la que enfrentas cada desafío,  
+                la determinación en tu mirada,  
+                la manera en que transformas los obstáculos en oportunidades,  
+                demostrando que no hay barrera que pueda detenerte.
+            </p>
+
+            <p>
+                Me llena de orgullo verte crecer,  
+                ver cómo cada día te conviertes en alguien aún más increíble,  
+                con un corazón tan noble y una mente tan brillante  
+                que no puedo evitar admirarte cada vez más.
+            </p>
+
+            <p>
+                Eres la melodía que calma mis días,  
+                la brisa que suaviza cualquier tormenta,  
+                la paz en medio del caos,  
+                el refugio donde siempre quiero estar.
+            </p>
+
+            <p>
+                Tu sonrisa es el amanecer de mis mañanas,  
+                tus abrazos, la fortaleza que necesito,  
+                y tus palabras, la inspiración que me impulsa  
+                a seguir creyendo en lo hermoso de la vida.
+            </p>
+
+            <p>
+                En cada pequeño gesto tuyo hay amor,  
+                en cada mirada, un mundo por descubrir,  
+                en cada caricia, un refugio donde quisiera quedarme  
+                por siempre, sin prisa, sin miedo, solo contigo.
+            </p>
+
+            <p>
+                Si la vida es un viaje,  
+                no quiero recorrerlo sin ti.  
+                Si el destino tiene sorpresas,  
+                prefiero descubrirlas de tu mano.
+            </p>
+
+            <p style="font-weight: bold;">
+                ¿Me darías el honor de estar contigo?
+            </p>
+
+            <button class="button" onclick="mostrarPantalla(3)">Te digo esto porque</button>
+        </div>
+    </div>
+
+    <div class="container" id="pantalla3" style="display: none;">
+        <h1>Te quiero Alma</h1>
+        <div style="font-size: 10rem;">💘</div>
+    </div>
+
+    <script>
+        function mostrarPantalla(num) {
+            document.getElementById("pantalla1").style.display = "none";
+            document.getElementById("pantalla2").style.display = "none";
+            document.getElementById("pantalla3").style.display = "none";
+            document.getElementById("pantalla" + num).style.display = "flex";
+        }
+
+        function crearEmoji() {
+            const emojis = ["🌹", "💋", "😍", "🐻", "✍🏼️", "🥰", "💓"];
+            const emoji = document.createElement("div");
+            emoji.classList.add("emoji");
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + "vw";
+            emoji.style.top = "-50px"; 
+            emoji.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.remove();
+            }, 5000);
+        }
+
+        setInterval(crearEmoji, 200);
+    </script>
+</body>
+</html>
